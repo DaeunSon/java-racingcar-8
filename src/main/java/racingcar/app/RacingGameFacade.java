@@ -20,7 +20,7 @@ public class RacingGameFacade {
         List<String> carNames = getCarNames();
         int attempts = getAttempts();
         Cars winners = startRacing(carNames, attempts);
-        
+        printWinners(winners);
     }
 
     private List<String> getCarNames(){
@@ -46,5 +46,10 @@ public class RacingGameFacade {
         return new Cars(cars.getWinners());
     }
 
-
+    private void printWinners(Cars winners){
+        String winnerNames = winners.getValues().stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", "));
+        System.out.println("최종 우승자 : " + winnerNames);
+    }
 }
